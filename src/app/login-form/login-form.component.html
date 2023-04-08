@@ -1,0 +1,56 @@
+<div class="container">
+    <div *ngIf="!logIn" class="signup-form">
+        <form #formDetail="ngForm" class="formstyle" (ngSubmit)="formSubmit(formDetail)">
+            <h1>SignUp</h1>
+            <div class="form-group">
+                <label for="username">User Name</label><br>
+                <input required minlength="2" type="text" name="username" class="form-control" ngModel>
+                <div class="errmsg"></div>
+            </div>
+            <pre></pre>
+            <div class="form-group">
+                <label for="email">Email</label><br>
+                <input  required type="text" name="email" class="form-control" ngModel>
+            </div>
+            <pre></pre>
+            <div class="form-group">
+                <label for="password">Password</label><br>
+                <input  required minlength="7" type="password" name="password" class="form-control" ngModel>
+            </div>
+            <pre></pre>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label><br>
+                <input required minlength="7" type="password" name="confirmPassword" class="form-control" ngModel>
+            </div>
+            <pre></pre>
+            <div class="buttons">
+                <button class="signup-button text-color-white text-bold" type="submit">SignUp</button>
+                <button class="login-button text-color-white text-bold" type="button" (click)="loginClicked()"    
+                >LogIn</button>
+            </div>
+            
+
+        </form>
+    </div>
+    <div *ngIf="logIn" class="login-form">
+        <form #formDetail="ngForm" class="formstyle" (ngSubmit)="formSubmit(formDetail)">
+            <h1>Login-Details</h1>
+
+            <div class="form-group">
+                <label for="username">User Name</label><br>
+                <input type="text" name="username" class="form-control" ngModel>
+            </div> <pre></pre>
+            <div class="form-group">
+                <label for="password">Password</label><br>
+                <input type="text" name="password" class="form-control" ngModel>
+            </div> <pre></pre>
+            <div class="buttons">
+                <button class="signup-button text-color-white text-bold" type="button"
+                    (click)="signUpClicked()"
+                >SignUp</button>
+                <button class="login-button text-color-white text-bold" type="submit">LogIn</button>
+            </div>
+        </form>
+    </div>
+
+</div>
