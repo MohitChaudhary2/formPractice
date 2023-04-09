@@ -7,7 +7,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { HomeComponent } from './home/home.component'
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {HttpClientModule} from '@angular/common/http'
     AppComponent,
     LoginFormComponent,
     HeaderComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

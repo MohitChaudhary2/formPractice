@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { UserService } from '../services/user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -11,30 +12,36 @@ export class LoginFormComponent {
   logIn = false;
   loggedIn = false;
   signUpData: any;
-  userCreateURL = "http://localhost:3000/user/create";
-  getUserDataURL = "http://localhost:3000/user/getAll";
+  loginPageLoaded = false;
+  signedUp = false;
 
-constructor(private http: HttpClient){}
+
+constructor(
+  private usersService: UserService,
+  private router: Router
+  ){}
 
 
   ngOnInit(){
     console.log("check");
+    this.loginPageLoaded = true;
+    this.signedUp = false;
   }
   loginClicked(){
     this.logIn = this.logIn? true: true;
     console.log("login? ",this.logIn);
   }
   signUpClicked(){
-    this.logIn = !this.logIn? false: false;
+    this.logIn = this.logIn? false: false;
     console.log("login? ",this.logIn);
   }
 
   formSubmit(data:any){
     if(this.logIn){
       console.log(data);
-      const req = this.http.get<any>(this.getUserDataURL);
-      req.subscribe((res:any)=>{
-        console.log(res);
+      let usersdata = this.usersService.getUsersData();
+      console.log(usersdata);
+      usersdata.subscribe((res)=>{
         res.data.forEach((user: any) =>{
           if(user.username === data.form.controls.username.value){
             if(user.password === data.form.controls.password.value){
@@ -46,10 +53,12 @@ constructor(private http: HttpClient){}
         });
         if(this.loggedIn){
           console.log("login Form Submitted: ", data);
+          this.router.navigate(['home']);
         }else{
           console.log("login failed Username or Password Incorrect");
-        }
-      });   
+        } 
+      });
+        
     }else{
       if(this.checkforError()){
 
@@ -62,14 +71,11 @@ constructor(private http: HttpClient){}
             email : data.form.controls.email.value,
           }
         ;
-        this.http.post(this.userCreateURL, this.signUpData).subscribe((res: any)=>{
-          console.log(res);
-        })
+        this.usersService.addUserData(this.signUpData);
         console.log("SignUp Form Submitted: ", data);
+        this.signedUp = true;
+        this.logIn = true;
       }
-      
-      
-
     }
   }
 

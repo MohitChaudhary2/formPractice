@@ -1,12 +1,2 @@
 
-<app-header
-(Login)="Login()"
-[isLoginText] = "isLogin"
-></app-header>
-<div *ngIf="isLogin">
-  <app-login-form></app-login-form>
-</div>
-<div *ngIf="!isLogin">
-  <app-landing-page></app-landing-page>
-</div>
 <router-outlet></router-outlet>

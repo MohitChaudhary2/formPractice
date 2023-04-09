@@ -1,3 +1,5 @@
+<app-header
+[isLoginPage]="loginPageLoaded"></app-header>
 <div class="container">
     <div *ngIf="!logIn" class="signup-form">
         <form #formDetail="ngForm" class="formstyle" (ngSubmit)="formSubmit(formDetail)">
@@ -33,6 +35,7 @@
         </form>
     </div>
     <div *ngIf="logIn" class="login-form">
+        <div *ngIf="signedUp">You have signed up now login with your username and password</div>
         <form #formDetail="ngForm" class="formstyle" (ngSubmit)="formSubmit(formDetail)">
             <h1>Login-Details</h1>
 
