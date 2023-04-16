@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.5.
 
 ## Development server
-
+important note: please use npm install after downloading this project to get all the required modules for the project
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
